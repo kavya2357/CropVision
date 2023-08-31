@@ -8,9 +8,9 @@ from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 
-clf_crop = pickle.load(open(r"C:\Users\kavya\Desktop\feature2\clf_crop.pkl", 'rb'))
-preprocesser = pickle.load(open(r"C:\Users\kavya\Desktop\feature2\preprocesser.pkl", 'rb'))
-clf_profit=pickle.load(open(r"C:\Users\kavya\Desktop\feature2\clf_profit.pkl",'rb'))
+clf_crop = pickle.load(open(r"C:\Users\kavya\Desktop\crop_prediction_and_profitability_analysis\model\clf_crop.pkl", 'rb'))
+preprocesser = pickle.load(open(r"C:\Users\kavya\Desktop\crop_prediction_and_profitability_analysis\model\preprocesser.pkl", 'rb'))
+clf_profit=pickle.load(open(r"C:\Users\kavya\Desktop\crop_prediction_and_profitability_analysis\model\clf_profit.pkl",'rb'))
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -63,7 +63,7 @@ def index():
         if predict[0][0] in crop_dict:
             crop = crop_dict[predict[0][0]]
             profit=str(predict[0][1])
-            return f"{crop} is the recommended crop to be cultivated {profit}"
+            return f"{crop} is the recommended crop to be cultivated with a profit of {profit}"
         else:
             return f"Sorry, we are not able to recommend a proper crop for this environment."
         
